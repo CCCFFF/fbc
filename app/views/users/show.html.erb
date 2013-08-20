@@ -30,8 +30,11 @@
   <%= @user.facebook_id %>
 </p>
 
-<%= @posts %>
-
+<% @posts.each do |post| %>
+  <ul>
+    <li><%= post['from']['name'] %> <%= link_to "Watch Video", post['link'] %></li>
+  </ul>
+<% end %>
 
 
 
