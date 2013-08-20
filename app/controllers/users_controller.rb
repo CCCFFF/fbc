@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
 
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :current_user_must_be_user, only: [:show, :edit, :update, :destroy]
+
+  def current_user_must_be_user
+    unless current_user == @user
+      redirect_to :back, notice: "You are not authorized for that"
+    end
+  end
+
   def index
     @users = User.all
   end
@@ -47,6 +56,9 @@ class UsersController < ApplicationController
 
   private
 
+  def set_user
+    @user = User.find(params[:id])
+  end
   def user_params
     params.require(:user).permit(:username, :first_name, :last_name, :password, :password_confirmation, :facebook_access_token, :facebook_id)
   end
