@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         url = "https://graph.facebook.com/me/home?access_token=#{@user.facebook_access_token}&limit=200"
         raw_response = open(url).read
         parsed_response = JSON.parse(raw_response)
-        @posts = parsed_response['data']
+        @posts = parsed_response['data'].select { |p| p['type'] == 'video' }
       rescue
         flash[:error] = "You must re-authorize facebook"
         @posts = []
