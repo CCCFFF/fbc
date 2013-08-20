@@ -28,7 +28,7 @@
         <div class="nav-collapse">
           <ul class="nav">
               <% if current_user.present? %>
-              Hello <%= current_user.username %>
+              Hello <%= link_to current_user.username, current_user %>
             <li><%= link_to "Sign Out", session_url, method: 'delete' %></li>
             <% else %>
             <li><%= link_to "Sign In", new_session_url %></li>
