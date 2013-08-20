@@ -16,10 +16,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    url = "https://graph.facebook.com/me/home?access_token=#{@user.facebook_access_token}&limit=200"
-    raw_response = open(url).read
-    parsed_response = JSON.parse(raw_response)
-    @posts = parsed_response['data']
+        begin
+        url = "https://graph.facebook.com/me/home?access_token=#{@user.facebook_access_token}&limit=200"
+        raw_response = open(url).read
+        parsed_response = JSON.parse(raw_response)
+        @posts = parsed_response['data']
+      rescue
+        flash[:error] = "You must re-authorize facebook"
+        @posts = []
+      end
   end
 
   def new
