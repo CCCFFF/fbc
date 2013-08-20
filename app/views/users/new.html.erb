@@ -1,0 +1,41 @@
+<h1>New User</h1>
+
+
+<%= form_tag(users_url, method: 'post') do %>
+
+
+  <div>
+    <%= label_tag :username %><br />
+    <%= text_field_tag :username %>
+  </div>
+
+  <div>
+    <%= label_tag :first_name %><br />
+    <%= text_field_tag :first_name %>
+  </div>
+
+  <div>
+    <%= label_tag :last_name %><br />
+    <%= text_field_tag :last_name %>
+  </div>
+
+  <div>
+    <%= label_tag :password_digest %><br />
+    <%= text_field_tag :password_digest %>
+  </div>
+
+  <div>
+    <%= label_tag :facebook_access_token %><br />
+    <%= text_field_tag :facebook_access_token %>
+  </div>
+
+  <div>
+    <%= label_tag :facebook_id %><br />
+    <%= text_field_tag :facebook_id %>
+  </div>
+
+
+  <div>
+    <%= submit_tag "Create User" %>
+  </div>
+<% end %>
