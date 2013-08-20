@@ -1,0 +1,33 @@
+
+
+<%= form_for @user do |f| %>
+  <div>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  </div>
+   <div>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+  </div>
+   <div>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+  </div>
+   <div>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  </div>
+   <div>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  </div>
+   <div>
+  <%= f.label :facebook_access_token %>
+  <%= f.text_field :facebook_access_token %>
+  </div>
+   <div>
+  <%= f.label :facebook_id %>
+  <%= f.text_field :facebook_id %>
+  </div>
+  <%= f.submit "Action" %>
+  <% end %>
