@@ -33,14 +33,15 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
+    respond_to do |format|
     if @user.save
-      flash[:notice] = "User Created Successfully"
-      redirect_to users_url
+      format.html { redirect_to @user, notice: "User Successfully Created"}
+      format.json { render action: 'show', status: :created, location: @user }
     else
-      flash[:error] = "Something went wrong, please try again"
-      render 'new'
+      format.html { render action: 'new' }
+      format.json { render json: @user.errors, status: :unprocessable_entity }
     end
+  end
   end
 
   def edit
@@ -48,14 +49,15 @@ class UsersController < ApplicationController
   end
 
   def update
-
+    repsond_to do |format|
     if @user.update(user_params)
-      flash[:notice] = "User Successfully Updated"
-      redirect_to users_url
+      format.html { redirect_to @user, notice: "User was successfully updated." }
+      format.json { head no_content }
     else
-      flash[:error] = "Something went wrong, please try again"
-      render 'new'
+      format.html { render action: 'edit' }
+      format.json { render json: @user.errors, status: :unprocessable_entity }
     end
+  end
   end
 
   def destroy
