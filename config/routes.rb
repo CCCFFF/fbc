@@ -1,7 +1,11 @@
 Fbc::Application.routes.draw do
 
+  get "/session/new" => "sessions#new", as: "new_session"
+  post "/session" => "sessions#create", as: "session"
+  delete "/session" => "sessions#destroy"
 
   # Routes for the User resource:
+  root "users#index"
   # CREATE
   get '/users/new', controller: 'users', action: 'new', as: 'new_user'
   post '/users', controller: 'users', action: 'create'
