@@ -27,10 +27,12 @@
         <a class="brand" href="/">Fbc</a>
         <div class="nav-collapse">
           <ul class="nav">
-
-            <li><%= link_to "Home", "/" %></li>
-            <li><%= link_to "Users", "/users" %></li>
-            <li><a href="#about">About</a></li>
+              <% if current_user.present? %>
+              Hello <%= current_user.username %>
+            <li><%= link_to "Sign Out", session_url, method: 'delete' %></li>
+            <% else %>
+            <li><%= link_to "Sign In", new_session_url %></li>
+            <% end %>
           </ul>
         </div>
       </div>
