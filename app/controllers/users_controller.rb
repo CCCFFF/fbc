@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
@@ -14,7 +16,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_id(params[:id])
+    url = "https://graph.facebook.com/me/home?access_token=#{@user.facebook_access_token}&limit=200"
+    raw_response = open(url).read
+    parsed_response = JSON.parse(raw_response)
+    @posts = parsed_response['data']
   end
 
   def new
