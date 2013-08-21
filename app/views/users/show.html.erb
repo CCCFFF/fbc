@@ -32,7 +32,7 @@
 
 <% @posts.each do |post| %>
   <ul>
-    <li><%= post['from']['name'] %> <%= link_to "Watch Video", post['link'] %></li>
+    <li><%= image_tag "https://graph.facebook.com/#{post['from']['id']}/picture" %> <%= post['from']['name'] %> <%= link_to "Watch Video", post['link'] %></li>
   </ul>
 <% end %>
 
