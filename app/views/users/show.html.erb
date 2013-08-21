@@ -31,8 +31,19 @@
 </p>
 
 <% @posts.each do |post| %>
-  <ul>
-    <li><%= image_tag "https://graph.facebook.com/#{post['from']['id']}/picture" %> <%= post['from']['name'] %> <%= link_to "Watch Video", post['link'] %></li>
+  <ul class="media-list">
+    <li class="media">
+      <div class="pull-left">
+        <%= image_tag "https://graph.facebook.com/#{post['from']['id']}/picture" %>
+      </div>
+      <div class="media-body">
+        <h2 class="media-heading">
+        <%= post['from']['name'] %>
+        </h2>
+        <p class="lead"><%= post['message'] %></p>
+        <%= link_to "Watch Video", post['link'], target: '_blank' %>
+      </div>
+      </li>
   </ul>
 <% end %>
 
